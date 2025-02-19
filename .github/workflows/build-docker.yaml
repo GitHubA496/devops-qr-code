@@ -20,6 +20,6 @@ jobs:
           docker build ./front-end-nextjs -t taratrios/devops-nextjs:latest
       - name: push image to docker hub
         run: |
-          docker login -u taratrios -p ${{secrets.DOCKER_HUB_AUTH}}
+          echo "${{ secrets.DOCKER_HUB_AUTH }}" | docker login -u taratrios --password-stdin
           docker push taratrios/devops-qr-api:latest
           docker push taratrios/devops-nextjs:latest
