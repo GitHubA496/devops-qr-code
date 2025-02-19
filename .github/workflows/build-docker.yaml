@@ -14,15 +14,15 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
-      - name: build image
-        run: |
-          docker build ./api -t taratrios/devops-qr-api:latest
-          docker build ./front-end-nextjs -t taratrios/devops-nextjs:latest
       - name: Login to Docker
         uses: docker/login-action@v3
         with:
           username: taratrios
           password: ${{ secrets.DOCKER_HUB_AUTH }}
+      - name: build image
+        run: |
+          docker build ./api -t taratrios/devops-qr-api:latest
+          docker build ./front-end-nextjs -t taratrios/devops-nextjs:latest
       - name: push image to docker hub
         run: |
           docker push taratrios/devops-qr-api:latest
